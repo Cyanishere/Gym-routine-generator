@@ -21,7 +21,7 @@ python3 gym.py
 ```
 
 ## Usage
-Open http://127.0.0.1:5000/ in your browser, input your personal information
+Open http://127.0.0.1:5000/ in your browser(You can also use http://localhost:5000/), input your personal information
 Select your workout mode, and get the suggested diet and routine
 
 ## Project Structure
