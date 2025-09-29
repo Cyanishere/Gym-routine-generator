@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wide=device-width,initial-scale=1.0">
+    <title>Gym Route Generator</title>
+    <style>
+        input, select {
+            display: block;
+            margin: 8px auto;
+            width: 80%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        body {
+            font-size: medium;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 100;
+            margin: 0; padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(228, 246, 240);
+        }
+        .gym_container {
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        }
+        .gym_container h3 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        label {
+            display: block;
+            font-size: medium;
+            margin: 8px auto;
+            font-weight: bold;
+            background-color: #ffffff;
+            text-align: center;
+            font-size: smaller;
+        }
+        button {
+            display: block;
+            width: 60%;
+            margin: 16px auto 0 auto;
+            padding: 8px;
+            background-color: rgb(228, 246, 240);
+            border-radius: 5px;
+            border:2px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="gym_container">
+    <h3>Gym Route Recommendation</h3>
+    <form id="gymForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" max="100" min="10" name='age' required>
+        <label for="gender">Gender:</label>
+
+        <select name="gender" id="gender" required>
+            <option value="">Choose</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height" max="250" required>
+        <label for="weight">Weight (kg)</label>
+        <input type="number" id="weight" name="weight" max="200" required>
+
+    <label for="bmi">BMI:</label>
+    <input type="number" id="bmi" name="bmi" step="0.01" readonly placeholder="BMI = weight / (height/100)^2">
+
+        <label for="fitness_level">Fitness Level:</label>
+        <select name="fitness_level" id="fitness_level" required>
+            <option value="">Choose</option>
+            <option value="Sedentary">Sedentary:No exercises habbit</option>
+            <option value="Beginner">Beginner: 1-2 times exercies a week</option>
+            <option value="Intermediate">Intermediate: 3-4 times exercies a week</option>
+            <option value="Advanced">Advanced: more than 4 times exercies a week</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+    <script>
+    function computeBMI() {
+        const height = parseFloat(document.getElementById('height').value);
+        const weight = parseFloat(document.getElementById('weight').value);
+        let bmi = '';
+        if (height > 0 && weight > 0) {
+            bmi = weight / ((height / 100) ** 2);
+            bmi = bmi.toFixed(2);
+        }
+        document.getElementById('bmi').value = bmi;
+    }
+    document.getElementById('height').addEventListener('input', computeBMI);
+    document.getElementById('weight').addEventListener('input', computeBMI);
+    document.getElementById('gymForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Collect form data and save to localStorage
+        const formData = new FormData(event.target);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+        localStorage.setItem('gymFormData', JSON.stringify(data));
+        window.location.href = '/submit';
+    });
+    </script>
+
+</body>
+</html>
