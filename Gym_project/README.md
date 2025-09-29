@@ -30,6 +30,8 @@ Gym_project/
 ├── gym.ipynb
 ├── megaGymDataset.csv
 ├── gym.py
+├── README.md
+├── requirements.txt
 ├── templates/
 │   ├── gym_input.html
 │   ├── TDEE.html
