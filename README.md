@@ -10,7 +10,7 @@ A Flask web app that suggests workout routines and nutrition tips based on your 
 ## Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/Gym_project.git
+git clone https://github.com/Cyanishere/Gym_project.git
 cd Gym_project
 ```
 2. Create a virtual environment (recommended)
